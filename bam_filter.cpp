@@ -225,7 +225,7 @@ void BamFilter::process_read(bam1_t *read)
         {
             failed_unmapped_++;
         }
-        else if (mapq1 <= mapq_cutoff_ || mapq2 <= mapq_cutoff_)
+        else if (mapq1 < mapq_cutoff_ || mapq2 < mapq_cutoff_)
         {
             failed_mapq_++;
         }
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
     const char *output_bam = argv[2];
     int mapq_cutoff = atoi(argv[3]);
 
-    int n_threads = 128; // Number of threads to use
+    int n_threads = 256; // Number of threads to use
 
     BamFilter bam_filter(input_bam, output_bam, mapq_cutoff, n_threads);
     bam_filter.process();
