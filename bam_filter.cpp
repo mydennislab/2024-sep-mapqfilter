@@ -273,16 +273,16 @@ void BamFilter::process_read(bam1_t *read)
 int main(int argc, char *argv[])
 {
     // Check and parse command-line arguments
-    if (argc < 4)
+    if (argc < 5)
     {
-        std::cerr << "Usage: " << argv[0] << " input.bam output.bam mapq_cutoff\n";
+        std::cerr << "Usage: " << argv[0] << " <input.bam> <output.bam> <mapq_cutoff> <cores> \n";
         return 1;
     }
     const char *input_bam = argv[1];
     const char *output_bam = argv[2];
     int mapq_cutoff = atoi(argv[3]);
 
-    int n_threads = 256; // Number of threads to use
+    int n_threads = atoi(argv[4]);
 
     BamFilter bam_filter(input_bam, output_bam, mapq_cutoff, n_threads);
     bam_filter.process();
