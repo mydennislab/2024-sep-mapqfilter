@@ -74,7 +74,7 @@ BamFilter::BamFilter(const char *input_bam, const char *output_bam, int mapq_cut
     : input_bam_(input_bam), output_bam_(output_bam), mapq_cutoff_(mapq_cutoff), n_threads_(n_threads),
       total_pairs_(0), passed_pairs_(0), failed_unmapped_(0), failed_not_paired_(0),
       failed_mapq_(0), failed_mate_not_found_(0),
-      max_reads_in_memory_(10000000), in_(nullptr), out_(nullptr), header_(nullptr)
+      max_reads_in_memory_(1000000000), in_(nullptr), out_(nullptr), header_(nullptr)
 {
 }
 
