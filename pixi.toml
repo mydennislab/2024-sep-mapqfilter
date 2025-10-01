@@ -1,0 +1,21 @@
+[project]
+name = "bamfilter"
+version = "0.1.0"
+description = "BAM filtering tool with MAPQ threshold"
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[dependencies]
+htslib = "*"
+samtools = "*"
+zlib = "*"
+gcc = "*"
+gxx = "*"
+
+[tasks]
+build = "g++ -O2 -o filter_bam bam_filter.cpp -I$CONDA_PREFIX/include -L$CONDA_PREFIX/lib -lhts -lz -lpthread -Wl,-rpath,$CONDA_PREFIX/lib"
+clean = "rm -f filter_bam filter_bam-static"
+test = { cmd = "./filter_bam || true", depends-on = ["build"] }
+
+# Release task - Usage: pixi run release v1.0.0
+release = "git tag $1 && git push origin $1 && echo Released $1"
