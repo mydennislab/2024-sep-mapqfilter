@@ -17,8 +17,8 @@ struct ReadData
     bam1_t *bam_record;
     uint32_t flag;
     uint8_t mapq;
-    int32_t pos;
-    int32_t mpos;
+    hts_pos_t pos;
+    hts_pos_t mpos;
     int32_t tid;
     int32_t mtid;
 };
