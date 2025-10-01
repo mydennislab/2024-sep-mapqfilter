@@ -17,5 +17,5 @@ build = "g++ -O2 -o filter_bam bam_filter.cpp -I$CONDA_PREFIX/include -L$CONDA_P
 clean = "rm -f filter_bam filter_bam-static"
 test = { cmd = "./filter_bam || true", depends-on = ["build"] }
 
-# Release task - Usage: pixi run release v1.0.0
-release = "git tag $1 && git push origin $1 && echo Released $1"
+# Release task - Usage: VERSION=v1.0.0 pixi run release
+release = "bash -c 'git tag $VERSION && git push origin $VERSION && echo Released $VERSION'"
